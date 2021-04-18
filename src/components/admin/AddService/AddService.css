@@ -1,0 +1,8 @@
+.responsive-container{
+    width: 50%;
+}
+@media (max-width: 991.98px) { 
+    .responsive-container{
+        width: 100%;
+    }
+}

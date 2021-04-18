@@ -1,0 +1,21 @@
+.social-icons{
+    display: inline-flex;
+}
+.icon{
+    font-size: 2em;
+    list-style: none;
+}
+.facebook{
+    color: #5d81ce;
+}
+.instagram{
+    color: #ff8c00;
+}
+.instagram:hover{
+    color: #b46300;
+}
+@media only screen and (max-width: 768px) {
+    .responsive-margin{
+        margin-top: 2em;
+    }
+  }
