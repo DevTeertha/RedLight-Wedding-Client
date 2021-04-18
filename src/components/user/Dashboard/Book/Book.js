@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Form } from 'react-bootstrap';
-import PaymentMain from '../PaymentGatway/PaymentMain';
+import PaymentMain from '../PaymentGateway/PaymentMain';
 import { myContext } from '../../../../App';
 
 const Book = () => {

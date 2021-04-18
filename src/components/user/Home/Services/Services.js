@@ -5,15 +5,14 @@ import { myContext } from '../../../../App';
 const Services = () => {
     const { serviceState } = useContext(myContext);
     const [service, setService] = serviceState;
-
     useEffect(() => {
         fetch('http://localhost:5000/services')
             .then(res => res.json())
             .then(data => setService(data))
             .catch(err => console.log(err))
-    }, [service.title])
+    }, [service.length]);
 
-    return service.length > 0 &&
+    return (
         <div className="services-container bg-danger">
             <div className="container py-5">
                 <div className="project-title">
@@ -26,6 +25,7 @@ const Services = () => {
                 </div>
             </div>
         </div>
+    );
 };
 
 export default Services;

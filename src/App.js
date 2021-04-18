@@ -58,7 +58,9 @@ function App() {
     uploadImageSpinner: false,
     eventLoadSpinner: false,
     statusSpinner: false,
-    bookingSpinner: false
+    bookingSpinner: false,
+    addServiceSpinner: false,
+    deleteSpinner: false
   });
   const [makeAdmin, setMakeAdmin] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);

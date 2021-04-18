@@ -63,7 +63,7 @@ const PaymentForm = () => {
                 fetch('http://localhost:5000/bookNow', {
                     method: "POST",
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ ...bookInfo, cardInfo: paymentMethod, serviceInfo: { description, price, img } })
+                    body: JSON.stringify({ ...bookInfo, cardInfo: paymentMethod, serviceInfo: { description, price } })
                 })
                     .then(res => res.json())
                     .then(data => {

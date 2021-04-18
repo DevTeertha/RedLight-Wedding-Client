@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react';
 import './AddService.css'
-import { Form, Spinner } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { myContext } from '../../../App';
-import axios from 'axios';
 import SnackBar from '../SnackBar/SnackBar';
 import { Snackbar } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
@@ -10,24 +9,14 @@ import Alert from '@material-ui/lab/Alert';
 const AddService = () => {
     const { openState, loadingState, addServiceState } = useContext(myContext);
     const [addService, setAddService] = addServiceState;
-    const [imageURL, setImageURL] = useState("");
     const [image, setImage] = useState("");
+    const [file, setFile] = useState(null);
     const [loading, setLoading] = loadingState;
     const [open, setOpen] = openState;
 
     const handleImageUpload = (e) => {
-        const imageData = new FormData();
-        imageData.set('key', '1b13afeea921d1f7a1ed17c2503cbf55');
-        imageData.append('image', e.target.files[0]);
-
-        setLoading({ uploadImageSpinner: true });
-        axios.post('https://api.imgbb.com/1/upload', imageData)
-            .then(res => {
-                setImage(e.target.files[0].name);
-                newAddService.img = res.data.data.display_url;
-                setLoading({ uploadImageSpinner: false });
-                setAddService(newAddService);
-            })
+        setImage(e.target.files[0].name);
+        setFile(e.target.files[0]);
     }
 
     let newAddService = { ...addService }
@@ -37,14 +26,21 @@ const AddService = () => {
     }
 
     const handleSubmitAddService = (e) => {
-        if (newAddService.title === "" || newAddService.price === "" || newAddService.description === "" || newAddService.img === "") {
-            setOpen({ isWarning: true, warningMsg: "Please Wait and Try Again!" });
+
+        if (addService.title === "" || addService.price === "" || addService.description === "" || file === null) {
+            setOpen({ isWarning: true, warningMsg: "Please Fill The Form Properly!" });
         }
         else {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('title', addService.title);
+            formData.append('price', addService.price);
+            formData.append('description', addService.description);
+
+            setLoading({ addServiceSpinner: true })
             fetch('http://localhost:5000/addService', {
                 method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(addService)
+                body: formData
             })
                 .then(res => res.json())
                 .then(data => {
@@ -55,8 +51,9 @@ const AddService = () => {
                         description: "",
                         img: ""
                     })
-                    setImageURL("");
+                    setFile(null);
                     setImage("");
+                    setLoading({ addServiceSpinner: false });
                     setOpen({ isOpen: true, massage: "Service Added Successfully" });
                 })
                 .catch(err => console.log(err))
@@ -65,7 +62,7 @@ const AddService = () => {
     }
 
     const handleWarningClose = (event, reason) => {
-        if (reason === 'clickaway') {
+        if (reason === 'clickable') {
             return;
         }
         setOpen({ isWarning: false });
@@ -89,26 +86,27 @@ const AddService = () => {
                             <Form.Label>Description</Form.Label>
                             <Form.Control name="description" onBlur={handleAddService} type="text" placeholder="Description"></Form.Control>
                         </Form.Group>
+                        <Form.Group>
+                            <input onChange={handleImageUpload} type="file" className="d-none" id="inputGroupFile01" />
+                            <label className="btn btn-dark" htmlFor="inputGroupFile01"> Choose file</label>
+                            {
+                                image ? <label className="ml-2"> {image} </label> :
+                                    <label className="ml-2">No Image</label>
+                            }
+                        </Form.Group>
                         {
-                            loading.uploadImageSpinner ?
-                                <label className="text-white btn disabled bg-dark">
-                                    <Spinner animation="border" variant="danger" size="sm" />Loading...
-                            </label>
+                            loading.addServiceSpinner ?
+                                <button class="btn btn-danger w-100 py-2" type="button" disabled>
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    Loading...
+                                </button>
                                 :
-                                <Form.Group>
-                                    <input onChange={handleImageUpload} type="file" className="d-none" id="inputGroupFile01" />
-                                    <label className="btn btn-dark" htmlFor="inputGroupFile01"> Choose file</label>
-                                    {
-                                        image ? <label className="ml-2"> {image} </label> :
-                                            <label className="ml-2">No Image</label>
-                                    }
-                                </Form.Group>
+                                <button type="submit" className="btn btn-danger w-100 py-2">Add Now</button>
                         }
-                        <button type="submit" className="btn btn-danger w-100 py-2">Add Now</button>
                     </Form>
                     <SnackBar></SnackBar>
-                    <Snackbar onClose={handleWarningClose} open={open.isWarning} autoHideDuration={3000}>
-                        <Alert onClose={handleWarningClose} severity="warning">
+                    <Snackbar onClose={handleWarningClose} open={open.isWarning} autoHideDuration={2000}>
+                        <Alert onClose={handleWarningClose} severity="error">
                             {open.warningMsg}
                         </Alert>
                     </Snackbar>

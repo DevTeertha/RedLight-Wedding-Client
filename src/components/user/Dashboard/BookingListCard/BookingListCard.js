@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Card } from 'react-bootstrap';
+import { myContext } from '../../../../App';
 
 const BookingListCard = ({ list }) => {
+    const { serviceState } = useContext(myContext);
+    const [service] = serviceState
     const [statusColor, setStatusColor] = useState("danger");
-    const { _id, serviceName, status, serviceInfo } = list;
-    const { description, img } = serviceInfo;
+    const { serviceName, status, serviceInfo } = list;
+    const { description } = serviceInfo;
+    const { img } = service.find(sr=>sr.title===serviceName);
 
     useEffect(() => {
         if(status==="done"){
@@ -19,7 +23,7 @@ const BookingListCard = ({ list }) => {
             <Card className="p-4">
                 <div className="d-flex">
                     <div>
-                        <Card.Img style={{ height: '100px', width: '100px', borderRadius: '50%' }} variant="top" src={img} />
+                        <Card.Img style={{ height: '100px', width: '100px', borderRadius: '50%' }} variant="top" src={`data:image/jpeg;base64,${img.img}`} />
                     </div>
                     <div className="pl-3">
                         <Card.Title className="font-weight-bold m-0 text-dark"> {serviceName} </Card.Title>

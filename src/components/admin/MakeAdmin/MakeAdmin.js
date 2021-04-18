@@ -29,10 +29,10 @@ const MakeAdmin = () => {
     }
     return (
         <div className="container mt-5">
-            <div className="makeadmin-header">
+            <div>
                 <h2 className="font-weight-bold">Make Admin</h2>
             </div>
-            <div style={{ height: '30vh' }} className="makeadmin-content mt-3">
+            <div style={{ height: '30vh' }} className="mt-3">
                 <div className="responsive-container border pr-5 pt-5 pb-5 p-3">
                     <Form onSubmit={handleMakeAdmin}>
                         <label className="font-weight-bold">Email</label>

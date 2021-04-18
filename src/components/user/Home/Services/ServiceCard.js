@@ -22,7 +22,7 @@ const ServiceCard = ({service}) => {
             }}>
                 <Link onClick={()=>handleBookNow(title)} className="text-decoration-none text-dark" to="/dashboard" >
                     <Card>
-                        <Card.Img className="p-2 img-fluid" variant="top" src={img} />
+                        <Card.Img className="p-2 img-fluid" variant="top" src={`data:image/jpeg;base64,${img.img}`}/>
                         <Card.Body className="text-center">
                             <Card.Title className="font-weight-bold"> {title} </Card.Title>
                             <Card.Text className="text-danger font-weight-bold"> ${price} </Card.Text>
