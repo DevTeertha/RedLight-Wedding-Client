@@ -62,7 +62,8 @@ function App() {
     statusSpinner: false,
     bookingSpinner: false,
     addServiceSpinner: false,
-    deleteSpinner: false
+    deleteSpinner: false,
+    serviceSpinner: false
   });
   const [makeAdmin, setMakeAdmin] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
