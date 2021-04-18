@@ -6,7 +6,7 @@ const Services = () => {
     const { serviceState } = useContext(myContext);
     const [service, setService] = serviceState;
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://radiant-earth-05632.herokuapp.com/services')
             .then(res => res.json())
             .then(data => setService(data))
             .catch(err => console.log(err))

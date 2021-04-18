@@ -6,7 +6,7 @@ const Testimonials = () => {
     const { testimonialState } = useContext(myContext);
     const [testimonial, setTestimonial] = testimonialState;
     useEffect(()=>{
-        fetch('http://localhost:5000/reviews')
+        fetch('https://radiant-earth-05632.herokuapp.com/reviews')
         .then(res=>res.json())
         .then(data=>setTestimonial(data))
         .catch(err=>console.log(err))

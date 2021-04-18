@@ -12,7 +12,7 @@ const ManageServiceCard = ({ service }) => {
 
     const handleDeleteService = () =>{
         setLoading({ deleteSpinner: true })
-        fetch(`http://localhost:5000/deleteService/${_id}`,{
+        fetch(`https://radiant-earth-05632.herokuapp.com/deleteService/${_id}`,{
             method: 'DELETE'
         })
         .then(res=>{

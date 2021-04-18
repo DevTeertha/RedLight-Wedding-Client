@@ -10,7 +10,7 @@ const EventList = () => {
 
     useEffect(() => {
         setLoading({ eventLoadSpinner: true })
-        fetch('http://localhost:5000/bookings')
+        fetch('https://radiant-earth-05632.herokuapp.com/bookings')
             .then(res => res.json())
             .then(data => {
                 setLoading({ eventLoadSpinner: false })
@@ -27,7 +27,7 @@ const EventList = () => {
         statusUpdate.status = e.target.value;
         setBookInfo(statusUpdate);
 
-        fetch('http://localhost:5000/updateStatus', {
+        fetch('https://radiant-earth-05632.herokuapp.com/updateStatus', {
             method: "PUT",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(bookInfo)

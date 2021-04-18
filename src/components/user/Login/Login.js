@@ -11,7 +11,7 @@ const Login = () => {
     let history = useHistory();
 
     const checkAdmin = (email) => {
-        fetch(`http://localhost:5000/isAdmin?email=${email}`)
+        fetch(`https://radiant-earth-05632.herokuapp.com/isAdmin?email=${email}`)
             .then(resonse =>resonse.json())
             .then(data =>setIsAdmin(data))
             .catch(err=>console.log(err))

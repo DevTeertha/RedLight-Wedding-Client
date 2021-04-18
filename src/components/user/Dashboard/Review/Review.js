@@ -19,7 +19,7 @@ const Review = () => {
         const { img } = userInfo;
         review.img = img;
         setReview(review);
-        fetch('http://localhost:5000/addReview',{
+        fetch('https://radiant-earth-05632.herokuapp.com/addReview',{
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(review)

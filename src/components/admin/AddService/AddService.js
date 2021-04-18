@@ -38,7 +38,7 @@ const AddService = () => {
             formData.append('description', addService.description);
 
             setLoading({ addServiceSpinner: true })
-            fetch('http://localhost:5000/addService', {
+            fetch('https://radiant-earth-05632.herokuapp.com/addService', {
                 method: "POST",
                 body: formData
             })

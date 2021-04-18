@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem('currentUser'));
     if (userData) {
-      fetch(`http://localhost:5000/isAdmin?email=${userData.email}`)
+      fetch(`https://radiant-earth-05632.herokuapp.com/isAdmin?email=${userData.email}`)
         .then(res => res.json())
         .then(data => setIsAdmin(data))
         .catch(err => err)

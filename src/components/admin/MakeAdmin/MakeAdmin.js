@@ -13,7 +13,7 @@ const MakeAdmin = () => {
     }
 
     const handleMakeAdmin = (e) => {
-        fetch('http://localhost:5000/makeAdmin', {
+        fetch('https://radiant-earth-05632.herokuapp.com/makeAdmin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: makeAdmin })

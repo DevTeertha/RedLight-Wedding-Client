@@ -8,7 +8,7 @@ const BookingList = () => {
     const [userInfo] = userInfoState
 
     useEffect(() => {
-        fetch(`http://localhost:5000/userBookingList?email=${userInfo.email}`)
+        fetch(`https://radiant-earth-05632.herokuapp.com/userBookingList?email=${userInfo.email}`)
             .then(res => res.json())
             .then(data => setUserBookingList(data))
             .catch(err => console.log(err))
