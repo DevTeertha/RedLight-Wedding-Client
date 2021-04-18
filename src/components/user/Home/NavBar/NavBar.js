@@ -67,7 +67,7 @@ const NavBar = () => {
                                     </div>
                                 </Popup>
                                 :
-                                <Nav.Link className="pt-3 pr-3 ml-4">
+                                <Nav.Link className="pt-3 pr-3 ml-md-2">
                                     <Link className="link text-white" to="/login">Login</Link>
                                 </Nav.Link>
                         }

@@ -7,6 +7,8 @@ import AdminPanel from './components/admin/AdminPanel/AdminPanel';
 import PrivateRoute from './components/user/PrivateRoute/PrivateRoute';
 import PrivateAdminRoute from './components/user/PrivateRoute/PrivateAdminRoute';
 import Dashboard from './components/user/Dashboard/Dashboard/Dashboard';
+import About from './components/user/About/About';
+import ProjectRoute from './components/user/ProjectRoute/ProjectRoute';
 
 export const myContext = createContext();
 function App() {
@@ -100,6 +102,14 @@ function App() {
           <PrivateRoute path="/dashboard">
             <Dashboard></Dashboard>
           </PrivateRoute>
+
+          <Route path="/about">
+            <About></About>
+          </Route>
+
+          <Route path="/projects">
+            <ProjectRoute></ProjectRoute>
+          </Route>
 
         </Switch>
       </Router>

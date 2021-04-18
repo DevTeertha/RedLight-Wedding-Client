@@ -4,6 +4,7 @@ import ProjectsCard from './ProjectsCard';
 import project1 from '../../../../img/project1.jpg';
 import project2 from '../../../../img/project2.jpg';
 import project3 from '../../../../img/project3.jpg';
+
 const projectsData = [
     {
         id: "1",
