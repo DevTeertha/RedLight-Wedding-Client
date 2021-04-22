@@ -15,4 +15,4 @@
 10. Admin Can Change User's Booking List Status
 11. Private Route Used
 12. User Info will save in localStorage
-13. LocalStorage will clear when user sign out
+13. LocalStorage will clear when user sign out# redlight-wedding-client
