@@ -1,14 +1,14 @@
-import React, { useState, createContext, useEffect } from 'react';
-import './App.css';
+import React, { useState, createContext, useEffect } from "react";
+import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from './components/user/Home/Home/Home';
-import Login from './components/user/Login/Login';
-import AdminPanel from './components/admin/AdminPanel/AdminPanel';
-import PrivateRoute from './components/user/PrivateRoute/PrivateRoute';
-import PrivateAdminRoute from './components/user/PrivateRoute/PrivateAdminRoute';
-import Dashboard from './components/user/Dashboard/Dashboard/Dashboard';
-import About from './components/user/About/About';
-import ProjectRoute from './components/user/ProjectRoute/ProjectRoute';
+import Home from "./components/user/Home/Home/Home";
+import Login from "./components/user/Login/Login";
+import AdminPanel from "./components/admin/AdminPanel/AdminPanel";
+import PrivateRoute from "./components/user/PrivateRoute/PrivateRoute";
+import PrivateAdminRoute from "./components/user/PrivateRoute/PrivateAdminRoute";
+import Dashboard from "./components/user/Dashboard/Dashboard/Dashboard";
+import About from "./components/user/About/About";
+import ProjectRoute from "./components/user/ProjectRoute/ProjectRoute";
 
 export const myContext = createContext();
 function App() {
@@ -16,46 +16,47 @@ function App() {
     isSignIn: false,
     name: "",
     email: "",
-    img: ""
+    img: "",
   });
 
   useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem('currentUser'));
+    const userData = JSON.parse(localStorage.getItem("currentUser"));
     if (userData) {
-      fetch(`https://radiant-earth-05632.herokuapp.com/isAdmin?email=${userData.email}`)
-        .then(res => res.json())
-        .then(data => setIsAdmin(data))
-        .catch(err => err)
+      fetch(
+        `https://redlight-server.herokuapp.com/isAdmin?email=${userData.email}`
+      )
+        .then((res) => res.json())
+        .then((data) => setIsAdmin(data))
+        .catch((err) => err);
 
       setUserInfo(userData);
     }
-  }, [localStorage.getItem('currentUser')])
+  }, [localStorage.getItem("currentUser")]);
 
   const [open, setOpen] = useState({
     isOpen: false,
     massage: "",
     isWarning: false,
-    warningMsg: ""
+    warningMsg: "",
   });
-
 
   const [bookInfo, setBookInfo] = useState({
     name: "",
     email: "",
     serviceName: "",
-    status: "pending"
+    status: "pending",
   });
   const [addService, setAddService] = useState({
     title: "",
     price: "",
     description: "",
-    img: ""
-  })
+    img: "",
+  });
   const [review, setReview] = useState({});
-  const [testimonial, setTestimonial] = useState([])
+  const [testimonial, setTestimonial] = useState([]);
   const [service, setService] = useState([]);
   const [bookingList, setBookingList] = useState([]);
-  const [userBookingList, setUserBookingList] = useState([])
+  const [userBookingList, setUserBookingList] = useState([]);
   const [loading, setLoading] = useState({
     uploadImageSpinner: false,
     eventLoadSpinner: false,
@@ -63,14 +64,14 @@ function App() {
     bookingSpinner: false,
     addServiceSpinner: false,
     deleteSpinner: false,
-    serviceSpinner: false
+    serviceSpinner: false,
   });
   const [makeAdmin, setMakeAdmin] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
 
   return (
-    <myContext.Provider value={
-      {
+    <myContext.Provider
+      value={{
         userInfoState: [userInfo, setUserInfo],
         makeAdminState: [makeAdmin, setMakeAdmin],
         isAdminState: [isAdmin, setIsAdmin],
@@ -82,12 +83,11 @@ function App() {
         loadingState: [loading, setLoading],
         reviewState: [review, setReview],
         testimonialState: [testimonial, setTestimonial],
-        openState: [open, setOpen]
-      }
-    }>
+        openState: [open, setOpen],
+      }}
+    >
       <Router>
         <Switch>
-
           <Route exact path="/">
             <Home></Home>
           </Route>
@@ -111,7 +111,6 @@ function App() {
           <Route path="/projects">
             <ProjectRoute></ProjectRoute>
           </Route>
-
         </Switch>
       </Router>
     </myContext.Provider>
