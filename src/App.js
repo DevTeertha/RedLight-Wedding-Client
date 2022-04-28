@@ -31,7 +31,7 @@ function App() {
 
       setUserInfo(userData);
     }
-  }, [localStorage.getItem("currentUser")]);
+  }, []);
 
   const [open, setOpen] = useState({
     isOpen: false,

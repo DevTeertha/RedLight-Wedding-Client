@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Card } from "react-bootstrap";
 import { myContext } from "../../../App";
-import SnackBar from "../SnackBar/SnackBar";
 
 const ManageServiceCard = ({ service }) => {
   const { _id, title, description, img } = service;
